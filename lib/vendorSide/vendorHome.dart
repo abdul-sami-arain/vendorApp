@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:vendorapp/screens/mainhome.dart';
-import 'package:vendorapp/screens/on.dart';
+
 import 'package:vendorapp/screens/signin.dart';
 import 'package:vendorapp/vendorSide/profile.dart';
 import 'package:vendorapp/vendorSide/servicesList.dart';
@@ -25,6 +25,7 @@ import 'package:vendorapp/widgets/title3.dart';
 import 'package:vendorapp/widgets/title4.dart';
 import 'package:vendorapp/widgets/title5.dart';
 
+import '../chatApp/vendorChat.dart';
 import '../provider/provider1.dart';
 import '../screens/serviceslist.dart';
 import '../widgets/profile.dart';
@@ -338,9 +339,7 @@ class _MyHomePageState extends State<MyHomePage> {
           children: <Widget>[
             VendorMain(),
             ServicesList1(),
-            Container(
-              color: Colors.green,
-            ),
+            VendorAllChat(),
             Profile1()
           ],
         ),

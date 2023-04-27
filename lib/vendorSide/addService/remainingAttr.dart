@@ -38,20 +38,43 @@ class RemainingAttr extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Provider11 = Provider.of<Provider1>(context); 
+    serviceAdd1()async{
+  DocumentReference servicesWork = FirebaseFirestore.instance.collection("${name}").doc("${Provider11.uid}");
+final Map<String, dynamic> data = {
+  'category': cat,
+  'name': name,
+  'imgAddress': imgAddress,
+  'description': description,
+  'price': cost,
+  'uid': Provider11.uid,
+  'pname':Provider11.fullname,
+  "availability":"available"
+
+};
+await servicesWork.set(data); // Note that we use set() instead of add() to add a new document
+
+      Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => vendorHome()),);
+    }
     serviceAdd()async{
+      serviceAdd1();
       CollectionReference servicesWork = FirebaseFirestore.instance.collection('works').doc(Provider11.uid).collection("sub");
       final Map<String, dynamic> data = {
           'category': cat,
           'name':name,
           'imgAddress':imgAddress,
           'description':description,
-          'price':cost
+          'price':cost,
+          'pname':Provider11.fullname,
+          "availability":"available"
         };
       await  servicesWork.add(data);
       Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => vendorHome()),);
     }
+
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(

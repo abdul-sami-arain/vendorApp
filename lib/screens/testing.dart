@@ -9,7 +9,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:vendorapp/screens/mainhome.dart';
-import 'package:vendorapp/screens/on.dart';
+
+import 'package:vendorapp/screens/postTask/details.dart';
 import 'package:vendorapp/screens/signin.dart';
 import 'package:vendorapp/widgets/heading2.dart';
 import 'package:flutter/material.dart';
@@ -25,6 +26,8 @@ import 'package:vendorapp/screens/signin.dart';
 import 'package:vendorapp/widgets/heading2.dart';
 
 import 'package:flutter/material.dart';
+
+import '../chatApp/allchatPersons.dart';
 
 
 
@@ -226,7 +229,7 @@ class _MyHomePageState extends State<MyHomePage> {
           },
           children: <Widget>[
             MainHome(),
-            Container(color: Colors.red,),
+            UserAllChatPerson(),
             Container(color: Colors.green,),
             Container(color: Colors.blue,),
           ],
@@ -237,7 +240,7 @@ class _MyHomePageState extends State<MyHomePage> {
         onPressed: (() {
           Navigator.push(
                                 context,
-                                MaterialPageRoute(builder: (context) => FormPage()),);
+                                MaterialPageRoute(builder: (context) => Details()),);
         }),
         tooltip: 'Increment',
         child: Icon(CupertinoIcons.briefcase),
@@ -258,8 +261,8 @@ class _MyHomePageState extends State<MyHomePage> {
             textAlign: TextAlign.center,
           ),
           BottomNavyBarItem(
-            icon: Icon(CupertinoIcons.bell),
-            title: Text('Notifications'),
+            icon: Icon(CupertinoIcons.chat_bubble_2),
+            title: Text('Chats'),
             activeColor: Color(0xff034047),
             textAlign: TextAlign.center,
           ),

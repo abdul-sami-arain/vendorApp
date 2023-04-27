@@ -8,6 +8,7 @@ import 'package:vendorapp/screens/signin.dart';
 import 'package:vendorapp/screens/terms.dart';
 import 'package:vendorapp/screens/testing.dart';
 import 'package:vendorapp/vendorSide/createAccount.dart';
+import 'package:vendorapp/vendorSide/loginVendor.dart';
 import 'package:vendorapp/vendorSide/numberAdd.dart';
 import 'package:vendorapp/widgets/callout.dart';
 import 'package:vendorapp/widgets/description.dart';
@@ -51,7 +52,7 @@ class Initial extends StatelessWidget {
                     onPressed: () {
                       Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => CreateAccount()),);
+                      MaterialPageRoute(builder: (context) => FixerSignin()),);
                     },
                     child: Text("Vendor App"),
                     style: ButtonStyle(

@@ -4,6 +4,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:vendorapp/Initial.dart';
 import 'package:vendorapp/provider/provider1.dart';
+import 'package:vendorapp/screens/login.dart';
+import 'package:vendorapp/screens/signin_fixer.dart';
 import 'package:vendorapp/vendorSide/Location1.dart';
 import 'package:vendorapp/vendorSide/addService/category.dart';
 import 'package:vendorapp/vendorSide/createAccount.dart';
@@ -37,7 +39,7 @@ class MyApp extends StatelessWidget {
             child: MaterialApp(
                  initialRoute: '/',
       routes: {
-        '/': (context) => CustomerServiceProfile(),
+        '/': (context) => Initial(),
         '/vendorHome': (context) => vendorHome(),
         '/addCategory':(context) => AddCategory(),
       },

@@ -1,7 +1,11 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
+import 'package:vendorapp/chatApp/landing.dart';
+import 'package:vendorapp/provider/provider1.dart';
 import 'package:vendorapp/screens/request_service_screen.dart';
 import 'package:vendorapp/widgets/labelsField.dart';
 import 'package:vendorapp/widgets/smaillTitlebold.dart';
@@ -9,17 +13,27 @@ import 'package:vendorapp/widgets/smallDesc.dart';
 import 'package:vendorapp/widgets/subhead.dart';
 import 'package:vendorapp/widgets/title1.dart';
 import 'package:vendorapp/widgets/title3.dart';
-
+import 'package:uuid/uuid.dart';
 import '../widgets/description.dart';
 
 
 class ProviderDescription extends StatelessWidget {
   String name;
   String service;
-   ProviderDescription({super.key,required this.name,required this.service});
+  String phone;
+  String location;
+  String age;
+  String exp;
+  String exp_desc;
+  String uid;
+  String profile;
+  ProviderDescription({super.key,required this.name,required this.service,required this.uid,required this.age,required this.profile,required this.exp,required this.exp_desc,required this.location,required this.phone});
 
   @override
   Widget build(BuildContext context) {
+    final Provider11 = Provider.of<Provider1>(context);
+    var uuid = Uuid();
+    var chatuid;
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(  
@@ -50,7 +64,7 @@ class ProviderDescription extends StatelessWidget {
                   ),
                 ],
       ),
-      height:110.h,
+      // height:110.h,
       child: Padding(
         padding:  EdgeInsets.symmetric(horizontal: 15.w,vertical: 10.h),
         child: Column(
@@ -61,7 +75,7 @@ class ProviderDescription extends StatelessWidget {
                   CircleAvatar(
                   radius: 30.0,
                   backgroundImage:
-                      AssetImage("assets/images/user.png"),
+                      NetworkImage("$profile"),
                   backgroundColor: Colors.blue,
                 ),
                 SizedBox(width: 10.w,),
@@ -146,7 +160,7 @@ class ProviderDescription extends StatelessWidget {
                     Labels(heading: "Call ", color: Color(0xff034047)),
                   ],
                 ),
-                Labels(heading: service, color: Color(0xff034047)),
+                Labels(heading: phone, color: Color(0xff034047)),
               ],
             ),
             Row(
@@ -159,15 +173,39 @@ class ProviderDescription extends StatelessWidget {
                     Labels(heading: "Location ", color: Color(0xff034047)),
                   ],
                 ),
-                Labels(heading: service, color: Color(0xff034047)),
+                Labels(heading: location, color: Color(0xff034047)),
               ],
             ),
             Container(
                         height: 48.h,
                         width: double.infinity,
                         child: ElevatedButton(
-                          onPressed: () {
-                        
+                          onPressed: () async{
+                          
+                            // FirebaseFirestore db = FirebaseFirestore.instance;
+                            // await db.collection("users").doc(Provider11.uid).update({
+                            //    "chatPersons":{
+                            //      uid:{
+                            //       "name":name,
+                            //       "uid":uid,
+                            //       "service":service,
+                            //       "chatUid":Provider11.uid+uid
+                            //     }
+                            //    }
+                            //  });
+                            //  await db.collection("vendors").doc(uid).update({
+                            //    "chatPersons":{
+                            //      Provider11.uid:{
+                            //       "name":Provider11.fullname,
+                            //       "uid":Provider11.uid,
+                            //       "service":service,
+                            //       "chatUid":Provider11.uid+uid
+                            //     }
+                            //    }
+                            //  });
+                           Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) => ChatLanding(uid: uid, name: name,)),);
                           },
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -228,7 +266,7 @@ class ProviderDescription extends StatelessWidget {
                     ],
                   ),
                   
-                  Labels(heading: service, color: Color(0xff034047)),
+                  Labels(heading: age, color: Color(0xff034047)),
                 ],
               ),
               Row(
@@ -242,7 +280,7 @@ class ProviderDescription extends StatelessWidget {
                     ],
                   ),
                   
-                  Labels(heading: service, color: Color(0xff034047)),
+                  Labels(heading: exp, color: Color(0xff034047)),
                 ],
               ),
           ],
@@ -390,7 +428,7 @@ class ProviderDescription extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                      
-                      Labels(heading: "Good communication and people skills", color: Color(0xff034047)),
+                      Labels(heading: "$exp_desc", color: Color(0xff034047)),
                     ],
                   ),
               Row(

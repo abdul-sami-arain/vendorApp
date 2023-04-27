@@ -73,7 +73,7 @@ class _AddCategoryState extends State<AddCategory> {
     'Kitchen': 'assets/images/kitchen.png',
     'Full Home Cleaning': 'assets/images/cleaning.png',
     'Sofa Carpet': 'assets/images/sofa.png',
-    'Fumigation': 'assets/images/fumigation.png',
+    'Fumigation': 'assets/images/insecticide.png',
     'Deep Cleaning': 'assets/images/deep.png',
   };
 
@@ -81,7 +81,7 @@ class _AddCategoryState extends State<AddCategory> {
     'Electrician': 'assets/images/electrician.png',
     'Plumber': 'assets/images/plumbing.png',
     'Carpenter': 'assets/images/carpenter.png',
-    'Furniture': 'assets/images/furniture.png',
+    'Furniture': 'assets/images/sofa.png',
     'Welder': 'assets/images/welder.png',
     'False ceiling': 'assets/images/chandelier.png',
   };
@@ -94,7 +94,7 @@ class _AddCategoryState extends State<AddCategory> {
     final Map<String, String> os = {
     'Home Painting': 'assets/images/painting.png',
     'Car Detailing': 'assets/images/detailing.png',
-    'Car Mechaninc': 'assets/images/mechanic.png',
+    'Car Mechanic': 'assets/images/mechanic.png',
     'CCTV Services': 'assets/images/cctv.png',
     'Movers': 'assets/images/movers.png',
   };

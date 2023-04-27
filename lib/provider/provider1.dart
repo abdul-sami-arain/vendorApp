@@ -27,6 +27,19 @@ class Provider1 extends ChangeNotifier {
   String? longitude;
   String? experience_description;
 
+  String? tasktitle;
+  String? taskdetail;
+  String? taskaudio;
+  String? taskvideo;
+  String? taskName;
+
+  String? taskdate;
+  String? taskwhere;
+
+  String? taskbudget;
+
+  String paymentMethod = "cod";
+
   List<dynamic> names =[];
   List<dynamic> imgs =[];
 

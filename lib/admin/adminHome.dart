@@ -3,7 +3,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:vendorapp/screens/mainhome.dart';
-import 'package:vendorapp/screens/on.dart';
 import 'package:vendorapp/screens/signin.dart';
 import 'package:vendorapp/widgets/BTitle2.dart';
 import 'package:vendorapp/widgets/heading2.dart';

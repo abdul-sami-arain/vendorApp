@@ -131,7 +131,7 @@ class _MainHomeState extends State<MainHome> {
                               onTap: (){
                                 Navigator.push(
                                 context,
-                                MaterialPageRoute(builder: (context) => ServiceProvider(service: "Electrician")),);
+                                MaterialPageRoute(builder: (context) => ServiceProvider(uno: 'Electrician',)),);
                               },
                               child: Square(
                                 color1:Color(0xff034047) , color2: Colors.black, sub: "\tElectric\nServices", address: "assets/images/electric.png")),
@@ -139,14 +139,14 @@ class _MainHomeState extends State<MainHome> {
                               onTap: (){
                                 Navigator.push(
                                 context,
-                                MaterialPageRoute(builder: (context) => ServiceProvider(service: "Plumber")),);
+                                MaterialPageRoute(builder: (context) => ServiceProvider( uno: 'Plumber',)),);
                               },
                               child: Square(color1:Color(0xff034047) , color2: Colors.black, sub: "Plumbing\nServices", address: "assets/images/plumbing.png")),
                             GestureDetector(
                               onTap: (){
                                 Navigator.push(
                                 context,
-                                MaterialPageRoute(builder: (context) => ServiceProvider(service: "Ac maintainer")),);
+                                MaterialPageRoute(builder: (context) => ServiceProvider(uno: 'Furniture',)),);
                               },
                               child: Square(color1:Color(0xff034047) , color2: Colors.black, sub: "\t\t\t\t\t\t\t\t\t\t\tAc\nmaintainance", address: "assets/images/ac.png")),
                           ],
@@ -159,21 +159,21 @@ class _MainHomeState extends State<MainHome> {
                               onTap: (){
                                 Navigator.push(
                                 context,
-                                MaterialPageRoute(builder: (context) => ServiceProvider(service: "Handyman")),);
+                                MaterialPageRoute(builder: (context) => ServiceProvider( uno: '3',)),);
                               },
                               child: Square(color1:Color(0xff034047) , color2: Colors.black, sub: "HandyMan", address: "assets/images/mechanic.png")),
                             GestureDetector(
                               onTap: (){
                                 Navigator.push(
                                 context,
-                                MaterialPageRoute(builder: (context) => ServiceProvider(service: "Cleaner")),);
+                                MaterialPageRoute(builder: (context) => ServiceProvider( uno: '4',)),);
                               },
                               child: Square(color1:Color(0xff034047) , color2: Colors.black, sub: "Fumigation", address: "assets/images/insecticide.png")),
                             GestureDetector(
                               onTap: (){
                                 Navigator.push(
                                 context,
-                                MaterialPageRoute(builder: (context) => ServiceProvider(service: "Cleaner")),);
+                                MaterialPageRoute(builder: (context) => ServiceProvider( uno: '5',)),);
                               },
                               child: Square(color1:Color(0xff034047) , color2: Colors.black, sub: "\t\tHouse\nCleaning", address: "assets/images/cleaning.png")),
                           ],

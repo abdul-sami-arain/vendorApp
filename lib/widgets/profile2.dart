@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -12,11 +13,21 @@ class Profile2 extends StatelessWidget {
   String name;
   String availability;
   String service;
-   Profile2({super.key,required this.name,required this.availability,required this.service});
+  String uid;
+   Profile2({super.key,required this.name,required this.availability,required this.service,required this.uid});
   
   
   @override
   Widget build(BuildContext context) {
+      getall ()async{
+             var data =await FirebaseFirestore.instance.
+          collection("vendors").
+          doc(uid). 
+          get();
+     Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => ProviderDescription(name: data['fullname'].toString(), service: service, uid: uid, age: "23", exp: data['total_experience'], exp_desc: data['experience_description'], location: data['address'], phone: data['phone'], profile: data['profile'],)),);
+      }
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20),
@@ -31,7 +42,7 @@ class Profile2 extends StatelessWidget {
                 ),
               ],
       ),
-      height: availability=="Available"?160.h:110.h,
+      // height: availability=="available"?160.h:110.h,
       child: Padding(
         padding:  EdgeInsets.symmetric(horizontal: 15.w,vertical: 10.h),
         child: Column(
@@ -59,13 +70,13 @@ class Profile2 extends StatelessWidget {
                           height: 20.h,
                           width: 80,
                           decoration: BoxDecoration(
-                            color:availability=="Available"? Colors.green:Colors.red,
+                            color:availability=="available"? Colors.green:Colors.red,
                             borderRadius: BorderRadius.circular(5)
                           ),
                           child: Padding(
                             padding:  EdgeInsets.symmetric(vertical: 3.h),
-                            child:availability=="Available"? Text(  
-                              "Avaialble",
+                            child:availability=="available"? Text(  
+                              "avaialble",
                               style: TextStyle(color: Colors.white,fontWeight: FontWeight.w600),
                               textAlign: TextAlign.center,
                             ): Text(  
@@ -99,14 +110,12 @@ class Profile2 extends StatelessWidget {
                 },
               ),
             ),
-             availability=="Available"?Container(
+             availability=="available"?Container(
                         height: 48.h,
                         width: double.infinity,
                         child: ElevatedButton(
                           onPressed: () {
-                                  Navigator.push(
-                              context,
-                              MaterialPageRoute(builder: (context) => ProviderDescription(name: name, service: service)),);
+                                 getall();
                           },
                           child: Text("Request Service"),
                           style: ButtonStyle(

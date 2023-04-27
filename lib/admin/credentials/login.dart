@@ -13,103 +13,26 @@ import 'package:vendorapp/screens/testing.dart';
 import 'package:vendorapp/vendorSide/vendorHome.dart';
 import 'package:vendorapp/widgets/callout.dart';
 import 'package:vendorapp/widgets/description.dart';
+import 'package:vendorapp/widgets/forgotLink.dart';
 import 'package:vendorapp/widgets/heading.dart';
 import 'package:im_stepper/main.dart';
 import 'package:im_stepper/stepper.dart';
 import 'package:vendorapp/widgets/labelsField.dart';
 
-import '../provider/provider1.dart';
 
-class FixerSignin extends StatefulWidget {
-  const FixerSignin({super.key});
+class LoginAdmin extends StatelessWidget {
+  const LoginAdmin({super.key});
 
   @override
-  State<FixerSignin> createState() => _FixerSigninState();
-}
-
-class _FixerSigninState extends State<FixerSignin> {
-  TextEditingController email = TextEditingController();
-  TextEditingController password = TextEditingController();
+  Widget build(BuildContext context) {
+    TextEditingController email = TextEditingController();
+    TextEditingController password = TextEditingController();
   @override
   final _formKey = GlobalKey<FormState>();
   bool statee = false;
   String? uuid;
-  Widget build(BuildContext context) {
-    final Provider11 = Provider.of<Provider1>(context);
-      getDataServices() async{
-   FirebaseFirestore.instance
-    .collection('works').doc(uuid).collection("sub")
-    .get()
-    .then((QuerySnapshot querySnapshot) {
-        querySnapshot.docs.forEach((doc) {
-            Provider11.names.add(doc["name"]);
-            Provider11.imgs.add(doc["imgAddress"].toString());
-        });
-    });
-    await Future.delayed(const Duration(seconds: 5));
-    print(Provider11.names);
-  }
-    void Login() async{
-      FirebaseAuth auth = FirebaseAuth.instance;
-      FirebaseFirestore db = FirebaseFirestore.instance;
-
-      final Future<FirebaseApp> _initialization = Firebase.initializeApp();
-      try {
-        final UserCredential users = await auth.signInWithEmailAndPassword(
-        email: email.text, password: password.text);
-
-        setState(() {
-          Provider11.uid = users.user!.uid;
-          uuid =users.user!.uid;
-          statee = false;
-        });
-
-         var data = await FirebaseFirestore.instance.
-          collection("vendors").
-          doc(users.user!.uid). 
-          get();
-   
-          setState(() {
-            Provider11.fullname=data['fullname'];
-            Provider11.gender=data['gender'];
-            Provider11.email=data['email'];
-            Provider11.address = data['address'];
-            Provider11.cnic = data['cnic'];
-            Provider11.dob = data['dob'];
-            Provider11.uid = data['uid'];
-            Provider11.shop_address = data['shop_address'];
-            Provider11.total_experience = data['total_experience'];
-            Provider11.phone = data['phone'];
-            Provider11.experience_description = data['experience_description'];
-            Provider11.latitude = data['latitude'].toString();
-            Provider11.longitude = data['longitude'].toString();
-            Provider11.profile = data['profile'];
-            Provider11.FrontFaceurl = data['FrontImg'];
-            Provider11.LeftFaceurl = data['LeftImg'];
-            Provider11.RightFaceurl = data['RightImg'];
-          });
-          setState(() {
-            statee = false;
-          });
-         
-        //  await getDataServices();
-         Navigator.pushNamed(context, '/vendorHome');
-     
-      } 
-        on FirebaseAuthException catch(e) {
-        print(e);
-        Fluttertoast.showToast(
-          msg: "${e.message}",
-          toastLength: Toast.LENGTH_SHORT,
-      );
-      }
-    }  
-  
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        backgroundColor: Color(0xffc6d8e2),
-        body: Center(
+    return Scaffold(
+      body: Center(
           child: Padding(
             padding:  EdgeInsets.symmetric(horizontal: 15.w,vertical: 35.h),
             child: Form(
@@ -123,7 +46,7 @@ class _FixerSigninState extends State<FixerSignin> {
                     
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Center(child: Heading(heading: "Fixer Log in")),
+                      Center(child: Heading(heading: "Admin Log in")),
                      
                     ],
                   ),
@@ -181,6 +104,17 @@ class _FixerSigninState extends State<FixerSignin> {
                           ),
                         ),
                       ),
+                      SizedBox(height: 4.h,),
+                      Row(
+                        children: [
+                          Container(),
+                          GestureDetector(
+                            onTap: (){
+                              
+                            },
+                            child: ForgotLink(link: "Forgot password?", color: Color(0xff034047)))
+                        ],
+                      )
                     ],
                   ),
                  
@@ -192,7 +126,7 @@ class _FixerSigninState extends State<FixerSignin> {
                           child: ElevatedButton(
                             onPressed: () {
                               if (_formKey.currentState!.validate()) {
-                                Login();
+                              
                                 // Navigator.push(
                                 // context,
                                 // MaterialPageRoute(builder: (context) => Terms()),);
@@ -211,7 +145,6 @@ class _FixerSigninState extends State<FixerSignin> {
             ),
           ),
         ) ,
-      ),
     );
   }
 }

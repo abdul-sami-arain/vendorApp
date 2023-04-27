@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:im_stepper/main.dart';
 import 'package:im_stepper/stepper.dart';
+import 'package:vendorapp/screens/login.dart';
 import 'package:vendorapp/screens/mainhome.dart';
 import 'package:vendorapp/screens/testing.dart';
 import 'package:vendorapp/widgets/heading2.dart';
@@ -99,7 +100,7 @@ scrollDirection: Axis.vertical,
                             onPressed: () {
                                Navigator.push(
                             context,
-                            MaterialPageRoute(builder: (context) => MyApp1()),);
+                            MaterialPageRoute(builder: (context) => Login()),);
                             },
                             child: Text("Accept",style: TextStyle(color: Color(0xff034047),fontWeight: FontWeight.w500),),
                             style: ButtonStyle(

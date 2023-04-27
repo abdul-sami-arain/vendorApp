@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'package:vendorapp/vendorSide/serviceDetail.dart';
 import 'package:vendorapp/widgets/dashboardSquare.dart';
 import 'package:vendorapp/widgets/heading2.dart';
 import 'package:vendorapp/widgets/jobs.dart';
@@ -60,99 +61,104 @@ class _ServicesList1State extends State<ServicesList1> {
                     return ListView(
                     children: snapshot.data!.docs.map((DocumentSnapshot document) {
                     Map<String, dynamic> data = document.data()! as Map<String, dynamic>;
-                      return Padding(
-                        padding:EdgeInsets.all(8.0),
-                        child: Container(
-                           decoration: BoxDecoration(
-                              color: Color.fromARGB(255, 205, 203, 203),
-                              borderRadius: BorderRadius.circular(15.r)),
-                          child: SingleChildScrollView(
-                            child: Padding(
-                              padding: EdgeInsets.all(8.0),
-                              child: Column(
-                                children: [
-                                      
-                                      
-                                         Padding(
-                                          padding:  EdgeInsets.symmetric(horizontal: 5.w),
-                                          child: Container(
-                                            child: Column(
-                                              children: [
-                                              Row(
-                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Row(
-                                            children: [
-                                              Title4(heading: "Rs ", color: Colors.black, weight: FontWeight.bold,),
-                                              Title4(heading: "${data['price']}", color: Colors.black, weight: FontWeight.bold,),
-                                            ],
-                                          ),
-                                           Container(
-                                    height: 20.h,
-                                    width: 80.w,
-                                    child: ElevatedButton(
-                                      onPressed: () {
-                                       
-                                          
-                                         
-                                      },
-                                      child: Text("Finish"),
-                                      style: ButtonStyle(
-                                        backgroundColor:
-                                            MaterialStateProperty.all(Color(0xff034047)),
-                                      ),
-                                    ))
-                                        ],
-                                      ),
-                                      SizedBox(height: 5.h,),
-                                               Row(
-                                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      return GestureDetector(
+                        onTap: (){
+                          Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) => ServiceDetail(availability: data['availability'], description: data['description'], img: data['imgAddress'], price: data['price'], serviceN: data['name'], cat: data['category'],)),);
+                        },
+                        child: Padding(
+                          padding:EdgeInsets.all(8.0),
+                          child: Container(
+                             decoration: BoxDecoration(
+                                color: Color.fromARGB(255, 205, 203, 203),
+                                borderRadius: BorderRadius.circular(15.r)),
+                            child: SingleChildScrollView(
+                              child: Padding(
+                                padding: EdgeInsets.all(8.0),
+                                child: Column(
+                                  children: [
+                                        
+                                        
+                                           Padding(
+                                            padding:  EdgeInsets.symmetric(horizontal: 5.w),
+                                            child: Container(
+                                              child: Column(
                                                 children: [
-                                                  Row(
-                                                    children: [
-                                                      Icon(CupertinoIcons.briefcase,color:Color(0xff034047) ,),
-                                                      SizedBox(width: 4.w,),
-                                                      Labels(heading: "Service Name ", color: Color(0xff034047)),
-                                                    ],
-                                                  ),
-                                                  Labels(heading: "${data['name']}", color: Color(0xff034047)),
-                                                ],
-                                                 ),
-                      
-                                                
-                                               
                                                 Row(
+                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Row(
+                                              children: [
+                                                Title4(heading: "Rs ", color: Colors.black, weight: FontWeight.bold,),
+                                                Title4(heading: "${data['price']}", color: Colors.black, weight: FontWeight.bold,),
+                                              ],
+                                            ),
+                                             Container(
+                                      height: 20.h,
+                                      width: 80.w,
+                                      child: ElevatedButton(
+                                        onPressed: () {
+                                           
+                                        },
+                                        child: Text("Finish"),
+                                        style: ButtonStyle(
+                                          backgroundColor:
+                                              MaterialStateProperty.all(Color(0xff034047)),
+                                        ),
+                                      ))
+                                          ],
+                                        ),
+                                        SizedBox(height: 5.h,),
+                                                 Row(
                                                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                   children: [
                                                     Row(
                                                       children: [
-                                                        Icon(CupertinoIcons.camera,color:Color(0xff034047) ,),
+                                                        Icon(CupertinoIcons.briefcase,color:Color(0xff034047) ,),
                                                         SizedBox(width: 4.w,),
-                                                        Labels(heading: "Image", color: Color(0xff034047)),
+                                                        Labels(heading: "Service Name ", color: Color(0xff034047)),
                                                       ],
                                                     ),
-                                                    Container(
-                          height: 40.0,
-                          width: 40.0,
-                          decoration: BoxDecoration(
-                            image: DecorationImage(
-                          image: AssetImage(
-                              '${data['imgAddress']}'),
-                          fit: BoxFit.fill,
-                            ),
-                            shape: BoxShape.circle,
-                          ),
-                                      )
+                                                    Labels(heading: "${data['name']}", color: Color(0xff034047)),
                                                   ],
-                                                ),
-                                              
-                                ],
-                                ),),
-                          
-                                ),
-                                 Title5(heading: "${data['description']}", color: Color(0xff034047), weight: FontWeight.w500,),
-                                 
-                                ]),
+                                                   ),
+                        
+                                                  
+                                                 
+                                                  Row(
+                                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                    children: [
+                                                      Row(
+                                                        children: [
+                                                          Icon(CupertinoIcons.camera,color:Color(0xff034047) ,),
+                                                          SizedBox(width: 4.w,),
+                                                          Labels(heading: "Image", color: Color(0xff034047)),
+                                                        ],
+                                                      ),
+                                                      Container(
+                            height: 40.0,
+                            width: 40.0,
+                            decoration: BoxDecoration(
+                              image: DecorationImage(
+                            image: AssetImage(
+                                '${data['imgAddress']}'),
+                            fit: BoxFit.fill,
+                              ),
+                              shape: BoxShape.circle,
+                            ),
+                                        )
+                                                    ],
+                                                  ),
+                                                
+                                  ],
+                                  ),),
+                            
+                                  ),
+                                   Title5(heading: "${data['description']}", color: Color(0xff034047), weight: FontWeight.w500,),
+                                   
+                                  ]),
+                              ),
                             ),
                           ),
                         ),

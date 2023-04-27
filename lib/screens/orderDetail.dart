@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 import 'package:vendorapp/boarding_screen/presentation/contentModel.dart';
 import 'package:vendorapp/screens/mainhome.dart';
 import 'package:vendorapp/screens/signin.dart';
@@ -17,11 +18,12 @@ import 'package:vendorapp/widgets/title2.dart';
 import 'package:vendorapp/widgets/title3.dart';
 import 'package:toggle_switch/toggle_switch.dart';
 
+import '../provider/provider1.dart';
+
 
 class OrderDetail extends StatefulWidget {
-  String service;
-  String mode;
-   OrderDetail({super.key,required this.service,required this.mode});
+
+   OrderDetail({super.key,});
 
   @override
   State<OrderDetail> createState() => _OrderDetailState();
@@ -30,6 +32,7 @@ class OrderDetail extends StatefulWidget {
 class _OrderDetailState extends State<OrderDetail> {
   @override
   Widget build(BuildContext context) {
+    final Provider11 = Provider.of<Provider1>(context); 
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
@@ -63,7 +66,7 @@ class _OrderDetailState extends State<OrderDetail> {
                               Labels(heading: "Customer Name ", color: Color(0xff034047)),
                             ],
                           ),
-                          Labels(heading: "Sahir", color: Color(0xff034047)),
+                          Labels(heading: "${Provider11.fullname.toString()}", color: Color(0xff034047)),
                         ],
                          ),
                         SizedBox(height: 10.h,),
@@ -77,7 +80,7 @@ class _OrderDetailState extends State<OrderDetail> {
                                 Labels(heading: "Phone Number ", color: Color(0xff034047)),
                               ],
                             ),
-                            Labels(heading: "090908879979", color: Color(0xff034047)),
+                            Labels(heading: "${Provider11.phone.toString()}", color: Color(0xff034047)),
                           ],
                         ),
                       ],
@@ -102,7 +105,7 @@ class _OrderDetailState extends State<OrderDetail> {
                               Labels(heading: "Service Name ", color: Color(0xff034047)),
                             ],
                           ),
-                          Labels(heading: "Painting", color: Color(0xff034047)),
+                          Labels(heading: "${Provider11.taskName}", color: Color(0xff034047)),
                         ],
                          ),
                         SizedBox(height: 10.h,),
@@ -116,7 +119,7 @@ class _OrderDetailState extends State<OrderDetail> {
                                 Labels(heading: "Date", color: Color(0xff034047)),
                               ],
                             ),
-                            Labels(heading: "12-04-2023", color: Color(0xff034047)),
+                            Labels(heading: "${Provider11.taskdate}", color: Color(0xff034047)),
                           ],
                         ),
                          SizedBox(height: 10.h,),
@@ -144,7 +147,7 @@ class _OrderDetailState extends State<OrderDetail> {
                                 Labels(heading: "Booking Charges", color: Color(0xff034047)),
                               ],
                             ),
-                            Labels(heading: "Rs. 15,000", color: Color(0xff034047)),
+                            Labels(heading: "Rs. ${Provider11.taskbudget}", color: Color(0xff034047)),
                           ],
                         ),
                          SizedBox(height: 10.h,),
@@ -158,7 +161,7 @@ class _OrderDetailState extends State<OrderDetail> {
                                 Labels(heading: "Address", color: Color(0xff034047)),
                               ],
                             ),
-                            Labels(heading: "H-52/1 Shamsi Socity Karachi", color: Color(0xff034047)),
+                            Labels(heading: "${Provider11.address}", color: Color(0xff034047)),
                           ],
                         ),
                         SizedBox(height: 30.h,),
@@ -186,7 +189,7 @@ class _OrderDetailState extends State<OrderDetail> {
                                 Labels(heading: "Total Charge", color: Color(0xff034047)),
                               ],
                             ),
-                            Labels(heading: "2000", color: Color(0xff034047)),
+                            Labels(heading: "${int.parse(Provider11.taskbudget.toString())+700}", color: Color(0xff034047)),
                           ],
                         ),
                         SizedBox(height: 10.h,),
@@ -200,7 +203,7 @@ class _OrderDetailState extends State<OrderDetail> {
                                 Labels(heading: "Payment Mode", color: Color(0xff034047)),
                               ],
                             ),
-                            Labels(heading: widget.mode, color: Color(0xff034047)),
+                            Labels(heading: Provider11.paymentMethod, color: Color(0xff034047)),
                           ],
                         ),
                         SizedBox(height: 30.h,),

@@ -1,6 +1,8 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 import 'package:vendorapp/boarding_screen/presentation/contentModel.dart';
 import 'package:vendorapp/screens/mainhome.dart';
 import 'package:vendorapp/screens/orderDetail.dart';
@@ -17,6 +19,8 @@ import 'package:vendorapp/widgets/title2.dart';
 import 'package:vendorapp/widgets/title3.dart';
 import 'package:toggle_switch/toggle_switch.dart';
 
+import '../provider/provider1.dart';
+
 
 class ConfirmationBooking extends StatefulWidget {
   String service;
@@ -29,7 +33,37 @@ class ConfirmationBooking extends StatefulWidget {
 class _ConfirmationBookingState extends State<ConfirmationBooking> {
   @override
   Widget build(BuildContext context) {
+    final Provider11 = Provider.of<Provider1>(context); 
     String mode = "Cash on Payment";
+
+    confirmOrder()async{
+      CollectionReference jobs = FirebaseFirestore.instance.collection('jobs').doc().collection(Provider11.taskName.toString());
+      CollectionReference posted_tasks = FirebaseFirestore.instance.collection('users').doc(Provider11.uid).collection("posted_tasks").doc().collection(Provider11.taskName.toString());
+    await  jobs.add({
+        "customer_name":Provider11.fullname,
+        "phone":Provider11.phone,
+        "service":Provider11.taskName,
+        "date":Provider11.taskdate,
+        "booking_charges":"700",
+        "address":Provider11.address,
+        "charges":Provider11.taskbudget,
+        "total":int.parse(Provider11.taskbudget.toString())+700,
+        "uid":Provider11.uid
+      });
+    await  posted_tasks.add({
+        "customer_name":Provider11.fullname,
+        "phone":Provider11.phone,
+        "service":Provider11.taskName,
+        "date":Provider11.taskdate,
+        "booking_charges":"700",
+        "address":Provider11.address,
+        "charges":Provider11.taskbudget,
+        "total":int.parse(Provider11.taskbudget.toString())+700,
+      });
+      Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => OrderDetail()),);
+    }
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
@@ -63,7 +97,7 @@ class _ConfirmationBookingState extends State<ConfirmationBooking> {
                               Labels(heading: "Customer Name ", color: Color(0xff034047)),
                             ],
                           ),
-                          Labels(heading: "Sahir", color: Color(0xff034047)),
+                          Labels(heading: Provider11.fullname.toString(), color: Color(0xff034047)),
                         ],
                          ),
                         SizedBox(height: 10.h,),
@@ -77,7 +111,7 @@ class _ConfirmationBookingState extends State<ConfirmationBooking> {
                                 Labels(heading: "Phone Number ", color: Color(0xff034047)),
                               ],
                             ),
-                            Labels(heading: "090908879979", color: Color(0xff034047)),
+                            Labels(heading: Provider11.phone.toString(), color: Color(0xff034047)),
                           ],
                         ),
                       ],
@@ -102,7 +136,7 @@ class _ConfirmationBookingState extends State<ConfirmationBooking> {
                               Labels(heading: "Service Name ", color: Color(0xff034047)),
                             ],
                           ),
-                          Labels(heading: "Painting", color: Color(0xff034047)),
+                          Labels(heading: Provider11.taskName.toString(), color: Color(0xff034047)),
                         ],
                          ),
                         SizedBox(height: 10.h,),
@@ -116,7 +150,7 @@ class _ConfirmationBookingState extends State<ConfirmationBooking> {
                                 Labels(heading: "Date", color: Color(0xff034047)),
                               ],
                             ),
-                            Labels(heading: "12-04-2023", color: Color(0xff034047)),
+                            Labels(heading: Provider11.taskdate.toString(), color: Color(0xff034047)),
                           ],
                         ),
                          SizedBox(height: 10.h,),
@@ -144,7 +178,7 @@ class _ConfirmationBookingState extends State<ConfirmationBooking> {
                                 Labels(heading: "Booking Charges", color: Color(0xff034047)),
                               ],
                             ),
-                            Labels(heading: "Rs. 15,000", color: Color(0xff034047)),
+                            Labels(heading: Provider11.taskbudget.toString(), color: Color(0xff034047)),
                           ],
                         ),
                          SizedBox(height: 10.h,),
@@ -158,7 +192,7 @@ class _ConfirmationBookingState extends State<ConfirmationBooking> {
                                 Labels(heading: "Address", color: Color(0xff034047)),
                               ],
                             ),
-                            Labels(heading: "H-52/1 Shamsi Socity Karachi", color: Color(0xff034047)),
+                            Labels(heading: Provider11.address.toString(), color: Color(0xff034047)),
                           ],
                         ),
                         SizedBox(height: 30.h,),
@@ -182,9 +216,9 @@ class _ConfirmationBookingState extends State<ConfirmationBooking> {
                                 print('switched to: $index');
                                 setState(() {
                                   if (index==0) {
-                                    mode == "Cash on Delievery";
+                                    mode = "Cash on Delievery";
                                   } else {
-                                    mode == "Cash on Payment";
+                                    mode = "Cash on Payment";
                                   }
                                 });
                               },
@@ -197,9 +231,7 @@ class _ConfirmationBookingState extends State<ConfirmationBooking> {
                           width: double.infinity,
                           child: ElevatedButton(
                             onPressed: () {
-                              Navigator.push(
-                              context,
-                              MaterialPageRoute(builder: (context) => OrderDetail(service: widget.service, mode: mode)),);
+                              confirmOrder();
                             },
                             child: Text("Done"),
                             style: ButtonStyle(
