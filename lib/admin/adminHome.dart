@@ -2,29 +2,14 @@ import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:vendorapp/screens/mainhome.dart';
-import 'package:vendorapp/screens/signin.dart';
-import 'package:vendorapp/widgets/BTitle2.dart';
 import 'package:vendorapp/widgets/heading2.dart';
-import 'package:flutter/material.dart';
-
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:vendorapp/screens/mainhome.dart';
-import 'package:vendorapp/screens/signin.dart';
-import 'package:vendorapp/widgets/heading2.dart';
-
-import 'package:flutter/material.dart';
-import 'package:vendorapp/widgets/mainHomeVendor.dart';
-import 'package:vendorapp/widgets/title3.dart';
 import 'package:vendorapp/widgets/title4.dart';
 import 'package:vendorapp/widgets/title5.dart';
-
 import '../screens/reviewsLista.dart';
-import '../screens/serviceslist.dart';
+import 'mainAdminHome.dart';
+import 'subScreens/serviceslist.dart';
 import '../vendorSide/userList.dart';
-import '../widgets/mainAdminHome.dart';
+
 
 class AdminHome extends StatelessWidget {
   @override

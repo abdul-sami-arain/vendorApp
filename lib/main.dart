@@ -16,6 +16,8 @@ import 'package:vendorapp/vendorSide/servicetype.dart';
 import 'package:vendorapp/vendorSide/typeOfService.dart';
 import 'package:vendorapp/vendorSide/vendorHome.dart';
 
+import 'admin/adminHome.dart';
+
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
@@ -39,7 +41,7 @@ class MyApp extends StatelessWidget {
             child: MaterialApp(
                  initialRoute: '/',
       routes: {
-        '/': (context) => Initial(),
+        '/': (context) => AdminHome(),
         '/vendorHome': (context) => vendorHome(),
         '/addCategory':(context) => AddCategory(),
       },

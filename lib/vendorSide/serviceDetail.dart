@@ -41,6 +41,7 @@ class _ServiceDetailState extends State<ServiceDetail> {
   super.initState();
  // Add listeners to this class
 }
+final _formKey = GlobalKey<FormState>();
   @override
   
   Widget build(BuildContext context) {
